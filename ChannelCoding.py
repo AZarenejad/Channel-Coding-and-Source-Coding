@@ -64,7 +64,6 @@ def channelDecoding(codeWord):
         firstPathCost = pathMetric[i][firstState[2]] + hammingDistance(splitedCodeWord[i], firstState[1])
         secondPathCost = pathMetric[i][secondState[2]] + hammingDistance(splitedCodeWord[i], secondState[1])
         if firstPathCost == secondPathCost:
-            print("here")
             if random.randint(0, 1) == 0:
                 currentState = firstState[2]
                 path.append(firstState[0])
@@ -123,12 +122,12 @@ if __name__ == '__main__':
     HuffmanCode = generateHuffman(Nodes)
     decoder = HuffmanDecoder(HuffmanCode)
 
-    plainText = "amirrezazarenejad"
+    plainText = "alirezazarenejad"
     cipherText = sourceCoding(HuffmanCode, plainText)
     print("encode huffman code is: " + cipherText)
 
     codeWord = channelCoding(cipherText)
-    print("result of channelCoding function encoding with convolutional state diagram: " + codeWord)
+    print("channelCoding: " + codeWord)
 
     decodedWord = channelDecoding(codeWord)
     print("decoded word:" + decodedWord)
@@ -138,7 +137,7 @@ if __name__ == '__main__':
 
     print("\n\nwith noise:")
     noisyCodeWord = noise(codeWord)
-    print("result of noisy codeword: " + noisyCodeWord)
+    print("noisy codeword: " + noisyCodeWord)
     decodedWordNoisy = channelDecoding(noisyCodeWord)
     print("decoded word:" + decodedWordNoisy)
     decodedDataNoisy = destinationDecoding(decoder, decodedWordNoisy)
